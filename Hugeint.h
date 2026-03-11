@@ -30,7 +30,7 @@ bool isZero(); // is zero
 void input( const char * ); // input 
 void output() const; // output 
 private: 
-int integer[ 40 ]={0}; // 40 element array 
+int integer[ 40 ]={0}; // 40 element array //此处可以使用常量static const int capacity = 40 ,方便数据修改；
 
 void adjust(HugeInteger &result);
 }; // end class HugeInteger 
