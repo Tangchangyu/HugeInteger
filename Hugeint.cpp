@@ -154,7 +154,7 @@ void HugeInteger::input(const char* a){
 
 }
 
-void HugeInteger::output(){
+void HugeInteger::output()const{
     int index = 0;
 
     for(int i = 0; i <40 ;i ++){

@@ -28,7 +28,7 @@ bool isGreaterThanOrEqualTo( HugeInteger & ); // greater than
 bool isLessThanOrEqualTo( HugeInteger & ); // less than or equal 
 bool isZero(); // is zero 
 void input( const char * ); // input 
-void output(); // output 
+void output() const; // output 
 private: 
 int integer[ 40 ]={0}; // 40 element array 
 

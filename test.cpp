@@ -1,7 +1,8 @@
 #include<iostream>
 #include"Hugeint.h"
-
-
+//构造辅助函数帮助打印；
+void print(const HugeInteger&,const char*,const HugeInteger&);//函数声明中缺少const，则会报错，因为常量字符串 "abcd" 具有只读的特性;
+//使用常量引用传递，加速运行效率
 
 int main(){
     HugeInteger a (7654321);
@@ -24,53 +25,51 @@ int main(){
     cout<<"\n";
 
     if (a.isEqualTo(a)){
-        a.output();
+        /*a.output();
         cout<<" is equal to ";
         a.output();
         cout<<"\n";
- 
+ */
+            print(a," is equal to ",a);
+
     }
 
     if (a.isNotEqualTo(b)){
-        a.output();
-        cout<<" is not equal to ";
-        b.output();
-        cout<<"\n";
+      print (a," is not equal to " ,b);
     }
 
     if (b.isGreaterThan(a)){
-        b.output();
-        cout<<" is greater than ";
-        a.output();
-        cout<<"\n";
+      
+        print(b, " is greater than ",a);
     }
 
     HugeInteger e(5);
     if (e.isLessThan(b)){
-        e.output();
-        cout<<" is less than ";
-        b.output();
-        cout<<"\n";
+        print(e," is less than ",b);
+        
     }
 
     if(e.isLessThanOrEqualTo(e)){
-        e.output();
-        cout<<" is less than or equal to ";
-        e.output();
-        cout<<"\n";
+        print(e," is less than or equal to ",e);
+
     }
     
     HugeInteger f;
     if(f.isGreaterThanOrEqualTo(f)){
-        f.output();
-        cout<<" is greater than or equal to ";
-        f.output();
-        cout<<"\n";
+        print(f," is greater than or equal to ",f);
     }
 
     HugeInteger n3(321465);
-    n3.input(0);
+    n3.input(0);//0会被理解为空指针，使用‘0’
     cout<<"n3 contains value ";
     n3.output();
+
+}
+
+void print(const HugeInteger& a,const char* b,const HugeInteger& c) {
+    a.output();
+    std::cout<<b;
+    c.output();
+    std::cout<<std::endl;
 
 }
