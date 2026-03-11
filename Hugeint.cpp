@@ -29,12 +29,13 @@ HugeInteger::HugeInteger(const char* a ){
 
     const char* end = a;//常量指针———指向常量的指针；
 
-    while(*end !='\0'){
+    while(*end !='\0')
+    {
         end++;
     }
     end--;
     for(int i = 0;i < 40 && end >= a;i++){
-        integer[39-i]=*end-'\0';
+        integer[39-i]=*end-'0';//此处为0 ，并非\0 
         end--;
     }
 
@@ -118,7 +119,7 @@ bool HugeInteger::isNotEqualTo(HugeInteger & other){
 bool HugeInteger::isGreaterThan(HugeInteger & other){
     for(int i = 0; i <40 ; i++){
         if(other.integer[i]== integer[i]) continue;
-        else if (other.integer[i] > integer[i]) return 1 ;
+        else if (other.integer[i] < integer[i]) return 1 ;
         else return 0;
         
     }
