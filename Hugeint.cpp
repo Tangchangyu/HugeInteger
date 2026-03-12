@@ -2,10 +2,10 @@
 #include<iostream>
 
 void  HugeInteger::adjust(){
-    for (int i = 0 ;i < 40 ;i++){
-        if (integer[39-i]>=10){
-            integer[39-i-1]+=integer[39-i]/10;
-            integer[39-i] =integer[39-i]%10;
+    for (int i = 39;i > 0 ;i--){
+        if (integer[i]>=10){
+            integer[i-1]+=integer[i]/10;
+            integer[i] =integer[i]%10;
         }
     }//实现进位矫正
 }
@@ -182,13 +182,16 @@ HugeInteger HugeInteger::operator*(const HugeInteger& other)const{
             int product = integer[39-j]* other.integer[39-i];
             
             int object = i + j;
-            result.integer[object] +=product;
+            if (object<40){
+                result.integer[39-object] +=product;
+            }
         }
 
     }
 
 
     result.adjust();
+    return result;
 }//初次构想，使用循环和pow函数实现累加；————否定：pow函数返回的是double，处理极大数时可能会丢失精度；
 //注意竖式乘法的逻辑——并非逐位数相乘；
 

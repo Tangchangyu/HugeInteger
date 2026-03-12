@@ -63,6 +63,7 @@ int main(){
     n3.input(0);//0会被理解为空指针，使用‘0’
     cout<<"n3 contains value ";
     n3.output();
+    cout <<std::endl;
 
     HugeInteger m = a*2;
     m.output();
