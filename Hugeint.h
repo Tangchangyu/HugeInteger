@@ -29,9 +29,19 @@ bool isLessThanOrEqualTo( HugeInteger & ); // less than or equal
 bool isZero(); // is zero 
 void input( const char * ); // input 
 void output() const; // output 
+
+HugeInteger operator*(const HugeInteger&) const;
+HugeInteger operator*(const int& )const;
+
+HugeInteger operator/(const HugeInteger&) const;
+HugeInteger operator/(const int&) const;
+
 private: 
 int integer[ 40 ]={0}; // 40 element array //此处可以使用常量static const int capacity = 40 ,方便数据修改；
 
-void adjust(HugeInteger &result);
+void adjust();
 }; // end class HugeInteger 
+
+
+//新增函数multiply，divide，modulus；
 #endif

@@ -1,11 +1,11 @@
 #include "Hugeint.h"
 #include<iostream>
 
-void  HugeInteger::adjust(HugeInteger &result){
+void  HugeInteger::adjust(){
     for (int i = 0 ;i < 40 ;i++){
-        if (result.integer[39-i]>10){
-            result.integer[39-i-1]+=result.integer[39-i]/10;
-            result.integer[39-i] = result.integer[39-i]%10;
+        if (integer[39-i]>=10){
+            integer[39-i-1]+=integer[39-i]/10;
+            integer[39-i] =integer[39-i]%10;
         }
     }//实现进位矫正
 }
@@ -48,7 +48,7 @@ HugeInteger  HugeInteger::add(const HugeInteger &other){
     for(int i = 0;i<40;i++){
         result.integer[i]=integer[i]+other.integer[i];
     }
-    adjust(result);
+    result.adjust();
 
     return result;
 }
@@ -173,3 +173,29 @@ void HugeInteger::output()const{
         }
     }
 }//pay attention to a lot of "0";
+
+HugeInteger HugeInteger::operator*(const HugeInteger& other)const{
+    HugeInteger result;
+    for (int i = 0; i <40 ;i ++){
+        if (other.integer[39-i]==0) continue;
+        for(int j =0;j < 40; j++){
+            int product = integer[39-j]* other.integer[39-i];
+            
+            int object = i + j;
+            result.integer[object] +=product;
+        }
+
+    }
+
+
+    result.adjust();
+}//初次构想，使用循环和pow函数实现累加；————否定：pow函数返回的是double，处理极大数时可能会丢失精度；
+//注意竖式乘法的逻辑——并非逐位数相乘；
+
+HugeInteger HugeInteger::operator*(const int& other)const{
+    return(*this * HugeInteger(other));//this是指向当前对象的指针，需要使用*解引用；
+}
+
+HugeInteger HugeInteger::operator/(const HugeInteger& other)const{
+
+}

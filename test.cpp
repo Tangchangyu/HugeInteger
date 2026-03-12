@@ -64,6 +64,9 @@ int main(){
     cout<<"n3 contains value ";
     n3.output();
 
+    HugeInteger m = a*2;
+    m.output();
+
 }
 
 void print(const HugeInteger& a,const char* b,const HugeInteger& c) {
