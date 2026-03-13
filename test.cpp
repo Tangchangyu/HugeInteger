@@ -60,7 +60,7 @@ int main(){
     }
 
     HugeInteger n3(321465);
-    n3.input(0);//0会被理解为空指针，使用‘0’
+    n3.input("0");//0会被理解为空指针，使用‘0’————单个字符，为char类型; 用"0":const char* ; 在input函数中实现hullptr的防护；
     cout<<"n3 contains value ";
     n3.output();
     cout <<std::endl;
