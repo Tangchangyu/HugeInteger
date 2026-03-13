@@ -71,6 +71,10 @@ int main(){
 
     HugeInteger n = a/2;
     n.output();
+    cout <<std::endl;
+
+    HugeInteger o =a%2;
+    o.output();
 
 }
 

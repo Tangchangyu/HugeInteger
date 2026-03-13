@@ -199,6 +199,10 @@ HugeInteger HugeInteger::operator*(const int& other)const{
     return(*this * HugeInteger(other));//this是指向当前对象的指针，需要使用*解引用；
 }
 
+HugeInteger HugeInteger::operator*(const char* other)const{
+    return operator*(HugeInteger(other));
+}
+
 HugeInteger HugeInteger::operator/(const HugeInteger& other)const{
     HugeInteger zero(0);//显式构造，防止返回0产生额外性能开销/歧义
 
@@ -234,4 +238,28 @@ HugeInteger HugeInteger::operator/(const HugeInteger& other)const{
 
 HugeInteger HugeInteger::operator/(const int& other)const{
     return *this/HugeInteger(other);
+}
+
+HugeInteger HugeInteger::operator/(const char* other)const{
+    return operator/(HugeInteger(other));
+}
+
+HugeInteger HugeInteger::operator%(const HugeInteger& other)const{
+    if (isLessThan(other)){
+        return *this;
+    }
+
+    if (isEqualTo(other)) return HugeInteger(0);//这种提前返回（Early Return）的习惯在编写高性能代码时非常重要
+
+    HugeInteger quotient =*this/other;
+    HugeInteger remainder = *this - quotient*other;
+    return remainder;
+}
+
+HugeInteger HugeInteger::operator%(const int& other) const{
+    return operator%(HugeInteger(other));
+}
+
+HugeInteger HugeInteger::operator%(const char* other) const{
+    return operator%(HugeInteger(other));
 }

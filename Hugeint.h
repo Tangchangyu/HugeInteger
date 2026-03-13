@@ -32,9 +32,15 @@ void output() const; // output
 
 HugeInteger operator*(const HugeInteger&) const;
 HugeInteger operator*(const int& )const;
+HugeInteger operator*(const char* ) const;
 
 HugeInteger operator/(const HugeInteger&) const;
 HugeInteger operator/(const int&) const;
+HugeInteger operator/(const char *) const;
+
+HugeInteger operator%(const HugeInteger&) const;
+HugeInteger operator%(const int &) const;
+HugeInteger operator%(const char*) const;
 
 private: 
 int integer[ 40 ]={0}; // 40 element array //此处可以使用常量static const int capacity = 40 ,方便数据修改；
