@@ -102,7 +102,7 @@ HugeInteger HugeInteger::subtract( const char* other){
     return subtract(HugeInteger(other));
 }
 
-bool HugeInteger::isEqualTo(HugeInteger & other){
+bool HugeInteger::isEqualTo(const HugeInteger & other)const{
 
     for(int i = 0 ;i <40 ;i++){
         if (other.integer[39-i] != integer[39-i]){
@@ -112,11 +112,11 @@ bool HugeInteger::isEqualTo(HugeInteger & other){
     return 1;
 }
 
-bool HugeInteger::isNotEqualTo(HugeInteger & other){
+bool HugeInteger::isNotEqualTo(const HugeInteger & other)const{
     return 1-isEqualTo(other);
 }
 
-bool HugeInteger::isGreaterThan(HugeInteger & other){
+bool HugeInteger::isGreaterThan(const HugeInteger & other)const{
     for(int i = 0; i <40 ; i++){
         if(other.integer[i]== integer[i]) continue;
         else if (other.integer[i] < integer[i]) return 1 ;
@@ -126,20 +126,20 @@ bool HugeInteger::isGreaterThan(HugeInteger & other){
     return 0;//两数相等的情况；
 }
 
-bool HugeInteger::isLessThan(HugeInteger & other){
+bool HugeInteger::isLessThan(const HugeInteger & other)const{
     if(1==isEqualTo(other)||1==isGreaterThan(other)) return 0;
     else return 1;
 }
 
-bool HugeInteger::isGreaterThanOrEqualTo(HugeInteger& other){
+bool HugeInteger::isGreaterThanOrEqualTo(const HugeInteger& other)const{
     return 1-isLessThan(other);
 }
 
-bool HugeInteger::isLessThanOrEqualTo(HugeInteger& other){
+bool HugeInteger::isLessThanOrEqualTo(const HugeInteger& other)const{
     return 1-isGreaterThan(other);
 }
 
-bool HugeInteger::isZero(){
+bool HugeInteger::isZero()const{
     for(int i = 0;i<40 ;i++){
         if(integer[39-i] != 0) return 0;
     }
@@ -200,5 +200,38 @@ HugeInteger HugeInteger::operator*(const int& other)const{
 }
 
 HugeInteger HugeInteger::operator/(const HugeInteger& other)const{
+    HugeInteger zero(0);//显式构造，防止返回0产生额外性能开销/歧义
 
+    if (other.isZero()) {
+        std::cout<<"Error: Division by 0" <<std::endl;
+        return zero;
+    }
+
+    if (isLessThan(other)){
+        return zero;
+    }
+
+    HugeInteger quotient;
+    HugeInteger remainder;
+
+    for(int i = 0; i < 40; i++){
+
+        remainder = remainder*10;
+        remainder = remainder.add(integer[i]);
+
+        int count = 0;
+        while(remainder.isGreaterThanOrEqualTo(other)){
+            remainder=remainder.subtract(other);
+            count++;
+
+        };
+        quotient.integer[i] =count;
+    }
+
+    return quotient;
+
+}
+
+HugeInteger HugeInteger::operator/(const int& other)const{
+    return *this/HugeInteger(other);
 }

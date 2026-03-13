@@ -19,14 +19,14 @@ HugeInteger subtract( int );
 // subtraction operator; 
 // HugeInteger - string that represents large integer value 
 HugeInteger subtract( const char * ); 
-bool isEqualTo( HugeInteger & ); // is equal to 
-bool isNotEqualTo( HugeInteger & ); // not equal to 
-bool isGreaterThan(HugeInteger & ); // greater than 
-bool isLessThan( HugeInteger & ); // less than 
-bool isGreaterThanOrEqualTo( HugeInteger & ); // greater than 
+bool isEqualTo(const HugeInteger & )const; // is equal to 
+bool isNotEqualTo(const HugeInteger & )const; // not equal to 
+bool isGreaterThan(const HugeInteger & )const; // greater than 
+bool isLessThan(const HugeInteger & )const; // less than 
+bool isGreaterThanOrEqualTo(const HugeInteger & )const; // greater than 
 // or equal to 
-bool isLessThanOrEqualTo( HugeInteger & ); // less than or equal 
-bool isZero(); // is zero 
+bool isLessThanOrEqualTo(const HugeInteger & )const; // less than or equal 
+bool isZero()const; // is zero 
 void input( const char * ); // input 
 void output() const; // output 
 
