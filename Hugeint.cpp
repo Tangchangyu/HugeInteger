@@ -146,7 +146,7 @@ bool HugeInteger::isZero()const{
     return 1;
 }
 
-void HugeInteger::input(const char* a){
+void HugeInteger::operator =(const char* a){
     HugeInteger n (a);
     for (int i = 0; i <40 ;i++){
         integer[i]=n.integer[i];

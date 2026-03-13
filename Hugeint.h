@@ -27,7 +27,7 @@ bool isGreaterThanOrEqualTo(const HugeInteger & )const; // greater than
 // or equal to 
 bool isLessThanOrEqualTo(const HugeInteger & )const; // less than or equal 
 bool isZero()const; // is zero 
-void input( const char * ); // input 
+void operator=( const char * ); // input 
 void output() const; // output 
 
 HugeInteger operator*(const HugeInteger&) const;
