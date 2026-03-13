@@ -7,8 +7,8 @@ void print(const HugeInteger&,const char*,const HugeInteger&);//函数声明中�
 int main(){
     HugeInteger a (7654321);
     HugeInteger b (7891234);
-    HugeInteger c = a.subtract(5);
-    HugeInteger d = a.add(b);
+    HugeInteger c = a-(5);
+    HugeInteger d = a+(b);
 
     using std::cout;
     a.output();

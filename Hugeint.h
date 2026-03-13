@@ -6,19 +6,19 @@ public:
 HugeInteger( int = 0 ); // conversion/default constructor 
 HugeInteger( const char * ); // conversion constructor 
 // addition operator; HugeInteger + HugeInteger 
-HugeInteger add( const HugeInteger & ); 
+HugeInteger operator +( const HugeInteger & )const; 
 // addition operator; HugeInteger + int 
-HugeInteger add( int ); 
+HugeInteger operator+(const int &)const; 
 // addition operator; 
 // HugeInteger + string that represents large integer value 
-HugeInteger add( const char * ); 
+HugeInteger operator+( const char * )const; 
 // subtraction operator; HugeInteger - HugeInteger 
-HugeInteger subtract( const HugeInteger & ); 
+HugeInteger operator-( const HugeInteger & )const; 
 // subtraction operator; HugeInteger - int 
-HugeInteger subtract( int ); 
+HugeInteger operator-(const int& )const; 
 // subtraction operator; 
 // HugeInteger - string that represents large integer value 
-HugeInteger subtract( const char * ); 
+HugeInteger operator-( const char * )const; 
 bool isEqualTo(const HugeInteger & )const; // is equal to 
 bool isNotEqualTo(const HugeInteger & )const; // not equal to 
 bool isGreaterThan(const HugeInteger & )const; // greater than 

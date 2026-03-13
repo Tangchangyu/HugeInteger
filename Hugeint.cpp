@@ -42,7 +42,7 @@ HugeInteger::HugeInteger(const char* a ){
 
 }//求长度，反向赋值；
 
-HugeInteger  HugeInteger::add(const HugeInteger &other){
+HugeInteger  HugeInteger::operator+(const HugeInteger &other)const{
 
     HugeInteger result;
     for(int i = 0;i<40;i++){
@@ -53,7 +53,7 @@ HugeInteger  HugeInteger::add(const HugeInteger &other){
     return result;
 }
 
-HugeInteger HugeInteger::add(int other){
+HugeInteger HugeInteger::operator+(const int& other)const{
 /*
     //逻辑一：尝试other求每位位数，使用标记数n；
     int a = other%10;
@@ -69,15 +69,15 @@ HugeInteger HugeInteger::add(int other){
 */
 //更优的解法——委托调用，利用构造函数的重载和已经编写的add函数实现；
 
-return add(HugeInteger(other));
+return *this+(HugeInteger(other));
 
 }
 
-HugeInteger HugeInteger::add(const char *other){
-    return add(HugeInteger(other));
+HugeInteger HugeInteger::operator+(const char *other)const{
+    return *this+(HugeInteger(other));
 }
 
-HugeInteger HugeInteger::subtract(const HugeInteger &other){
+HugeInteger HugeInteger::operator-(const HugeInteger &other)const{
     HugeInteger result;
 
     for(int i = 0;i < 40 ;i ++){
@@ -94,12 +94,12 @@ HugeInteger HugeInteger::subtract(const HugeInteger &other){
     return result;
 }
 
-HugeInteger HugeInteger::subtract( int other ){
-    return subtract(HugeInteger(other));//构造函数的主动调用？
+HugeInteger HugeInteger::operator-(const int& other )const{
+    return operator-(HugeInteger(other));//构造函数的主动调用？
 }
 
-HugeInteger HugeInteger::subtract( const char* other){
-    return subtract(HugeInteger(other));
+HugeInteger HugeInteger::operator-( const char* other)const{
+    return operator-(HugeInteger(other));
 }
 
 bool HugeInteger::isEqualTo(const HugeInteger & other)const{
@@ -217,11 +217,11 @@ HugeInteger HugeInteger::operator/(const HugeInteger& other)const{
     for(int i = 0; i < 40; i++){
 
         remainder = remainder*10;
-        remainder = remainder.add(integer[i]);
+        remainder = remainder +(integer[i]);
 
         int count = 0;
         while(remainder.isGreaterThanOrEqualTo(other)){
-            remainder=remainder.subtract(other);
+            remainder=remainder- (other);
             count++;
 
         };
